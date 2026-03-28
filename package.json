@@ -8,7 +8,9 @@
     "start": "node backend/server.js",
     "server": "nodemon backend/server.js",
     "client": "npm run dev --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node backend/seeder",
+    "data:destroy": "node backend/seeder -d"
   },
   "repository": {
     "type": "git",
@@ -21,7 +23,10 @@
   },
   "homepage": "https://github.com/Ahmed0484/shop#readme",
   "dependencies": {
-    "express": "^5.2.1"
+    "bcryptjs": "^3.0.3",
+    "colors": "^1.4.0",
+    "express": "^5.2.1",
+    "mongoose": "^9.3.3"
   },
   "devDependencies": {
     "concurrently": "^9.2.1",

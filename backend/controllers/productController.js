@@ -8,8 +8,17 @@ const getProducts = asyncHandler(async (req, res) => {
   const pageSize = 2;
   const page = Number(req.query.pageNumber) || 1;
 
-  const count = await Product.countDocuments();
-  const products = await Product.find()
+  const keyword = req.query.keyword
+    ? {
+      name: {
+        $regex: req.query.keyword,
+        $options: 'i',
+      },
+    }
+    : {};
+
+  const count = await Product.countDocuments({ ...keyword });
+  const products = await Product.find({ ...keyword })
     .limit(pageSize)
     .skip(pageSize * (page - 1));
 
@@ -56,7 +65,7 @@ const createProduct = asyncHandler(async (req, res) => {
 const updateProduct = asyncHandler(async (req, res) => {
   const { name, price, description, image, brand, category, countInStock } =
     req.body;
-  
+
   const product = await Product.findById(req.params.id);
 
   if (product) {
@@ -133,6 +142,7 @@ const createProductReview = asyncHandler(async (req, res) => {
 });
 
 
-export { getProducts, getProductById, createProduct, updateProduct,deleteProduct,
+export {
+  getProducts, getProductById, createProduct, updateProduct, deleteProduct,
   createProductReview
- };
+};

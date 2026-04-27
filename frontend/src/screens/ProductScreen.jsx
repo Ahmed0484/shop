@@ -1,5 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { useNavigate, useParams,Link } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap';
 import Rating from '../components/Rating';
 import { toast } from 'react-toastify';

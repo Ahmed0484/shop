@@ -5,6 +5,7 @@ import Loader from '../components/Loader';
 import Message from '../components/Message';
 import { useParams ,Link} from 'react-router-dom';
 import Paginate from '../components/Paginate';
+import ProductCarousel from '../components/ProductCarousel';
 
 
 const HomeScreen = () => {
@@ -12,7 +13,13 @@ const HomeScreen = () => {
   const { data, isLoading, error } = useGetProductsQuery({ keyword,pageNumber});
   return (
     <>
-      {keyword && (<Link to='/' className='btn btn-light mb-4'>Go back</Link>)}
+      {!keyword ? (
+        <ProductCarousel />
+      ) : (
+        <Link to='/' className='btn btn-light'>
+          Go Back
+        </Link>
+      )}
       {isLoading ? (
         <Loader />
       ) : error ? (
